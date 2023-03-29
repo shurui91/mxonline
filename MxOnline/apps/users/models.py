@@ -17,12 +17,12 @@ class BaseModel(models.Model):
 
 
 class UserProfile(AbstractUser):
-    nick_name = models.CharField(max_length=50, verbose_name="Nickname", default="")
-    birthday = models.DateField(verbose_name="Birthday", null=True, blank=True)
-    gender = models.CharField(verbose_name="Gender", choices=GENDER_CHOICES, max_length=6)
-    address = models.CharField(max_length=100, verbose_name="Address", default="")
-    mobile = models.CharField(max_length=11, verbose_name="Phone Number")
-    image = models.ImageField(verbose_name="Avatar", upload_to="head_image/%Y/%m", default="default.jpg")
+    nick_name = models.CharField(max_length=50, verbose_name="Nickname/昵称", default="")
+    birthday = models.DateField(verbose_name="Birthday/生日", null=True, blank=True)
+    gender = models.CharField(verbose_name="Gender/性别", choices=GENDER_CHOICES, max_length=6)
+    address = models.CharField(max_length=100, verbose_name="Address/地址", default="")
+    mobile = models.CharField(max_length=11, verbose_name="Phone Number/电话")
+    image = models.ImageField(verbose_name="Avatar/头像", upload_to="head_image/%Y/%m", default="default.jpg")
 
     class Meta:
         verbose_name = "用户信息"
