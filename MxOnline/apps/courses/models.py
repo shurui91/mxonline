@@ -1,0 +1,38 @@
+from django.db import models
+
+from MxOnline.apps.users.models import BaseModel
+
+# 设计表结构有几个重要的点
+# 实体的具体字段
+# 每个字段的类型，是否必填
+"""
+实体1 <关系> 实体2
+课程 章节 视频 课程资源
+"""
+
+
+class Course(models.Model):
+    # teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="Teacher")
+    # course_org = models.ForeignKey(CourseOrg, null=True, blank=True, on_delete=models.CASCADE, verbose_name="Course Organization")
+    name = models.CharField(verbose_name="Course Name", max_length=50)
+    desc = models.CharField(verbose_name="Course Description", max_length=300)
+    learn_times = models.IntegerField(default=0, verbose_name="Learn Times (mins)")
+    degree = models.CharField(verbose_name="Degree", choices=(("cj", "Easy"), ("zj", "Medium"), ("gj", "Hard")),
+                              max_length=2)
+    students = models.IntegerField(default=0, verbose_name='Number of Students')
+    fav_nums = models.IntegerField(default=0, verbose_name='Number of Favorites')
+    click_nums = models.IntegerField(default=0, verbose_name="Number of Clicks")
+    notice = models.CharField(verbose_name="Course Announcement", max_length=300, default="")
+    category = models.CharField(default=u"后端开发", max_length=20, verbose_name="Course Category")
+    tag = models.CharField(default="", verbose_name="Course Tag", max_length=10)
+    youneed_know = models.CharField(default="", max_length=300, verbose_name="MUSTKNOW")
+    teacher_tell = models.CharField(default="", max_length=300, verbose_name="Teacher Tell")
+    is_classics = models.BooleanField(default=False, verbose_name="Classical")
+    # detail = UEditorField(verbose_name="Course Details", width=600, height=300, imagePath="courses/ueditor/images/", filePath="courses/ueditor/files/", default="")
+    detail = models.TextField(verbose_name="Course Details")
+    is_banner = models.BooleanField(default=False, verbose_name="isBanner")
+    image = models.ImageField(upload_to="courses/%Y/%m", verbose_name="Course Image", max_length=100)
+
+    class Meta:
+        verbose_name = "Course Information"
+        verbose_name_plural = verbose_name
