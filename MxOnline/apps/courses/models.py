@@ -36,3 +36,43 @@ class Course(models.Model):
     class Meta:
         verbose_name = "Course Information"
         verbose_name_plural = verbose_name
+
+
+class Lesson(BaseModel):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Course")  # on_delete表示对应的外键数据被删除后，当前的数据应该怎么办
+    name = models.CharField(max_length=100, verbose_name="Lesson Name")
+    learn_times = models.IntegerField(default=0, verbose_name="Course Duration")
+
+    class Meta:
+        verbose_name = "课程章节"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
+
+
+class Video(BaseModel):
+    lesson = models.ForeignKey(Lesson, verbose_name="Chapter", on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, verbose_name=u"Video Name")
+    learn_times = models.IntegerField(default=0, verbose_name=u"Duration")
+    url = models.CharField(max_length=1000, verbose_name=u"URL")
+
+    class Meta:
+        verbose_name = "Video"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
+
+
+class CourseResource(BaseModel):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Course")
+    name = models.CharField(max_length=100, verbose_name=u"Name")
+    file = models.FileField(upload_to="course/resource/%Y/%m", verbose_name="File Location", max_length=200)
+
+    class Meta:
+        verbose_name = "Course Resource"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
