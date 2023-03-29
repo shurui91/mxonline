@@ -1,8 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from MxOnline.apps.users.models import BaseModel, UserProfile
 from MxOnline.apps.courses.models import Course
 
+
+UserProfile = get_user_model()
 
 # 用户可以不必登陆就能留言
 class UserAsk(BaseModel):
