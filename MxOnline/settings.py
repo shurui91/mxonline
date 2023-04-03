@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# 自己定义一张表去替代django默认的user表
+# 自己定义一张表去替代django默认的user表，否则django不知道
 AUTH_USER_MODEL = "users.UserProfile"
 
 # Internationalization

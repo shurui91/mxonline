@@ -13,6 +13,7 @@ class BaseModel(models.Model):
     add_time = models.DateTimeField(default=datetime.now, verbose_name="add time")
 
     class Meta:
+        # 防止migrate的时候生成一张表
         abstract = True
 
 
@@ -29,4 +30,7 @@ class UserProfile(AbstractUser):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.username
+        if self.nick_name:
+            return self.nick_name
+        else:
+            return self.username
