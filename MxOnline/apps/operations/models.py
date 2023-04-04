@@ -1,11 +1,12 @@
-from django.contrib.auth import get_user_model
 from django.db import models
 
-from MxOnline.apps.users.models import BaseModel, UserProfile
+from django.contrib.auth import get_user_model
+
+from MxOnline.apps.users.models import BaseModel
 from MxOnline.apps.courses.models import Course
 
-
 UserProfile = get_user_model()
+
 
 # 用户可以不必登陆就能留言
 class UserAsk(BaseModel):
@@ -38,7 +39,8 @@ class CourseComments(BaseModel):
 class UserFavorite(BaseModel):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name="User")
     fav_id = models.IntegerField(verbose_name="数据id")
-    fav_type = models.IntegerField(choices=((1, "课程"), (2, "课程机构"), (3, "讲师")), default=1, verbose_name="fav type")
+    fav_type = models.IntegerField(choices=((1, "课程"), (2, "课程机构"), (3, "讲师")), default=1,
+                                   verbose_name="fav type")
 
     class Meta:
         verbose_name = "User Favorite"
@@ -72,4 +74,3 @@ class UserCourse(BaseModel):
 
     def __str__(self):
         return self.course.name
-
