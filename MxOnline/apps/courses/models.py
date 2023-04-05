@@ -38,9 +38,13 @@ class Course(models.Model):
         verbose_name = "课程信息"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
+
 
 class Lesson(BaseModel):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Course")  # on_delete表示对应的外键数据被删除后，当前的数据应该怎么办
+    course = models.ForeignKey(Course, on_delete=models.CASCADE,
+                               verbose_name="Course")  # on_delete表示对应的外键数据被删除后，当前的数据应该怎么办
     name = models.CharField(max_length=100, verbose_name="Lesson Name")
     learn_times = models.IntegerField(default=0, verbose_name="Course Duration")
 
