@@ -8,8 +8,8 @@ class City(BaseModel):
     desc = models.CharField(max_length=200, verbose_name=u"Description")
 
     class Meta:
-        verbose_name = "City"
-        verbose_name_plural = "Cities"
+        verbose_name = "城市"
+        verbose_name_plural = "城市"
 
     def __str__(self):
         return self.name
@@ -31,8 +31,11 @@ class CourseOrg(BaseModel):
     city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="City")
 
     class Meta:
-        verbose_name = "Course Organization"
+        verbose_name = "课程机构"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
 
 class Teacher(BaseModel):
@@ -49,5 +52,8 @@ class Teacher(BaseModel):
     image = models.ImageField(upload_to="teacher/%Y/%m", verbose_name="Avatar", max_length=100)
 
     class Meta:
-        verbose_name = "Teacher"
-        verbose_name_plural = "Teachers"
+        verbose_name = "教师"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name

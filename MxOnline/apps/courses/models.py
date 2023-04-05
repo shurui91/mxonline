@@ -35,7 +35,7 @@ class Course(models.Model):
     image = models.ImageField(upload_to="courses/%Y/%m", verbose_name="Course Image", max_length=100)
 
     class Meta:
-        verbose_name = "Course Information"
+        verbose_name = "课程信息"
         verbose_name_plural = verbose_name
 
 
@@ -59,7 +59,7 @@ class Video(BaseModel):
     url = models.CharField(max_length=1000, verbose_name=u"URL")
 
     class Meta:
-        verbose_name = "Video"
+        verbose_name = "视频"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -72,7 +72,7 @@ class CourseResource(BaseModel):
     download = models.FileField(upload_to="course/resource/%Y/%m", verbose_name="File Location", max_length=200)
 
     class Meta:
-        verbose_name = "Course Resource"
+        verbose_name = "课程资源"
         verbose_name_plural = verbose_name
 
     def __str__(self):

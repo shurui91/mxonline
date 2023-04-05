@@ -15,8 +15,8 @@ class UserAsk(BaseModel):
     course_name = models.CharField(max_length=50, verbose_name="Course Name")
 
     class Meta:
-        verbose_name = "User Inquiry"
-        verbose_name_plural = "User Inquiries"
+        verbose_name = "用户咨询"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return "{name}_{course}({mobile})".format(name=self.name, course=self.course_name, mobile=self.mobile)
@@ -29,8 +29,8 @@ class CourseComments(BaseModel):
     comments = models.CharField(max_length=200, verbose_name="Comments")
 
     class Meta:
-        verbose_name = "Comment"
-        verbose_name_plural = "Comments"
+        verbose_name = "课程评论"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.comments
@@ -43,8 +43,8 @@ class UserFavorite(BaseModel):
                                    verbose_name="fav type")
 
     class Meta:
-        verbose_name = "User Favorite"
-        verbose_name_plural = "User Favorites"
+        verbose_name = "用户收藏"
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return "{user}_{id}".format(user=self.user.username, id=self.fav_id)
@@ -69,7 +69,7 @@ class UserCourse(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Course")
 
     class Meta:
-        verbose_name = "User's Courses"
+        verbose_name = "用户课程"
         verbose_name_plural = verbose_name
 
     def __str__(self):
