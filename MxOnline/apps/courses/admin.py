@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from MxOnline.apps.courses.models import Course
+
+
+class CourseAdmin(admin.ModelAdmin):
+    pass
+
+
+# admin.site.register(UserProfile, UserProfileAdmin)
+admin.site.register(Course, CourseAdmin)
