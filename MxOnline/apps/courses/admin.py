@@ -28,6 +28,9 @@ class CourseResourceAdmin(admin.ModelAdmin):
     list_filter = ["course", "name", "download", "add_time"]
 
 
+admin.site.site_header = '幕课网管理后台'  # sidebar title
+admin.site.site_title = '大江狗'  # tab title
+admin.site.index_title = '大江狗管理后台'
 # admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)
