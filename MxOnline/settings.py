@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'MxOnline.apps.users.apps.UsersConfig',
     'MxOnline.apps.organizations.apps.OrganizationsConfig',
     'MxOnline.apps.operations.apps.OperationsConfig',
+    'captcha',
 ]
 
 MIDDLEWARE = [
