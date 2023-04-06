@@ -1,14 +1,22 @@
 from django.shortcuts import render
 from django.views.generic.base import View
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from MxOnline.apps.users.forms import LoginForm
 
 
+class LogoutView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return HttpResponseRedirect(reverse("index"))
+
+
 class LoginView(View):
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(reverse("index"))
         return render(request, "login.html")
 
     def post(self, request, *args, **kwargs):
