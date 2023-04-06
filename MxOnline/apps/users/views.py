@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from MxOnline.apps.users.forms import LoginForm
+from MxOnline.apps.users.forms import LoginForm, DynamicLoginForm
 
 
 class LogoutView(View):
@@ -17,7 +17,11 @@ class LoginView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return HttpResponseRedirect(reverse("index"))
-        return render(request, "login.html")
+
+        login_form = DynamicLoginForm()
+        return render(request, "login.html", {
+            "login_form": login_form
+        })
 
     def post(self, request, *args, **kwargs):
         # 表单验证
