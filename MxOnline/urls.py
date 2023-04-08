@@ -19,6 +19,7 @@ from django.conf.urls import include
 from django.views.generic import TemplateView
 
 from MxOnline.apps.users.views import LoginView, LogoutView
+from MxOnline.apps.organizations.views import OrgView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(), name="logout"),
     path('captcha/', include('captcha.urls')),
+    path('org_list', OrgView.as_view(), name="org_list"),
 ]
