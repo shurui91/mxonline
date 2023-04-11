@@ -16,16 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from django.urls import re_path as url
 from django.views.generic import TemplateView
 
 from MxOnline.apps.users.views import LoginView, LogoutView
 from MxOnline.apps.organizations.views import OrgView
+from MxOnline.settings import MEDIA_ROOT
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name="index.html"), name="index"),
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(), name="logout"),
-    path('captcha/', include('captcha.urls')),
-    path('org_list', OrgView.as_view(), name="org_list"),
+    url('captcha/', include('captcha.urls')),
+    # 配置上传文件的访问url
+    url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
+    # url(r'^static/(?P<path>.*)$', serve, {"document_root":STATIC_ROOT}),
+    url(r'^org_list', OrgView.as_view(), name="org_list"),
 ]
