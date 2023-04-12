@@ -27,8 +27,14 @@ class CourseOrg(BaseModel):
     address = models.CharField(max_length=150, verbose_name="Organization Address")
     students = models.IntegerField(default=0, verbose_name="Number of Students")
     course_nums = models.IntegerField(default=0, verbose_name="Number of Courses")
+    is_auth = models.BooleanField(default=False, verbose_name="Is this an authenticated organization?")
+    is_gold = models.BooleanField(default=False, verbose_name="Is this a golden organization?")
     # 如果以后需要添加新的城市
     city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="City")
+
+    def courses(self):
+        courses = self.course_set.filter(is_classics=True)[:3]
+        return courses
 
     class Meta:
         verbose_name = "课程机构"
