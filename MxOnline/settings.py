@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'MxOnline.apps.organizations.apps.OrganizationsConfig',
     'MxOnline.apps.operations.apps.OperationsConfig',
     'captcha',
+    'pure_pagination',
 ]
 
 MIDDLEWARE = [
