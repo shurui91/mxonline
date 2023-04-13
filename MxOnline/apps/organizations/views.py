@@ -12,6 +12,7 @@ class OrgView(View):
         all_cities = City.objects.all()
 
         # 对课程机构进行筛选
+        # 这里默认值为空
         category = request.GET.get("ct", "")
         if category:
             all_orgs = all_orgs.filter(category=category)
