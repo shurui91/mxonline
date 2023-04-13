@@ -22,4 +22,5 @@ class OrgView(View):
             "all_orgs": all_orgs,
             "org_nums": org_nums,
             "all_cities": all_cities,
+            "category": category
         })
