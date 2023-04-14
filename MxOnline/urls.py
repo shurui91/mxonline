@@ -29,7 +29,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html"), name="index"),
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(), name="logout"),
-    url('captcha/', include('captcha.urls')),
+    url(r'^captcha/', include('captcha.urls')),
     # 配置上传文件的访问url
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
     # url(r'^static/(?P<path>.*)$', serve, {"document_root":STATIC_ROOT}),
