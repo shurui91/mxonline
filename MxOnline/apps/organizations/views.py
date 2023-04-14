@@ -11,11 +11,17 @@ class OrgView(View):
         all_orgs = CourseOrg.objects.all()
         all_cities = City.objects.all()
 
-        # 对课程机构进行筛选
+        # 通过机构类别对课程机构进行筛选
         # 这里默认值为空
         category = request.GET.get("ct", "")
         if category:
             all_orgs = all_orgs.filter(category=category)
+
+        # 通过城市对课程机构进行筛选
+        city_id = request.GET.get("city", "")
+        if city_id:
+            if city_id.isdigit():
+                all_orgs = all_orgs.filter(city_id=int(city_id))
 
         org_nums = all_orgs.count()
 
@@ -23,5 +29,6 @@ class OrgView(View):
             "all_orgs": all_orgs,
             "org_nums": org_nums,
             "all_cities": all_cities,
-            "category": category
+            "category": category,
+            "city_id": city_id,
         })
