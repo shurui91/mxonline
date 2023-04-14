@@ -1,8 +1,25 @@
 from django.shortcuts import render
 from django.views.generic.base import View
+from django.http import JsonResponse
 
 from MxOnline.apps.organizations.models import CourseOrg, City
-from MxOnline.settings import MEDIA_URL
+from MxOnline.apps.organizations.forms import AddAskForm
+
+
+class AddAskView(View):
+    # 处理用户的咨询
+    def post(self, request, *args, **kwargs):
+        userask_form = AddAskForm(request.POST)
+        if userask_form.is_valid():
+            userask_form.save(commit=True)
+            return JsonResponse({
+                "status": "success"
+            })
+        else:
+            return JsonResponse({
+                "status": "fail",
+                "msg": "添加出错"
+            })
 
 
 class OrgView(View):
