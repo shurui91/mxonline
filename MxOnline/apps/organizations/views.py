@@ -10,7 +10,7 @@ class OrgView(View):
         # 从数据库获取数据
         all_orgs = CourseOrg.objects.all()
         all_cities = City.objects.all()
-        # hot_orgs = all_orgs.order_by("-click_nums")
+        hot_orgs = all_orgs.order_by("-click_nums")[:3]
 
         # 通过机构类别对课程机构进行筛选
         # 这里默认值为空
@@ -40,4 +40,5 @@ class OrgView(View):
             "category": category,
             "city_id": city_id,
             "sort": sort,
+            "hot_orgs": hot_orgs,
         })
