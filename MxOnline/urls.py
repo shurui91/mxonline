@@ -14,8 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.conf.urls import include
+from django.urls import path, include
 from django.urls import re_path as url
 from django.views.generic import TemplateView
 
@@ -30,8 +29,12 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(), name="logout"),
     url(r'^captcha/', include('captcha.urls')),
+
     # 配置上传文件的访问url
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
     # url(r'^static/(?P<path>.*)$', serve, {"document_root":STATIC_ROOT}),
-    url(r'^org_list', OrgView.as_view(), name="org_list"),
+    # url(r'^org_list/', OrgView.as_view(), name="org_list"),
+
+    # 机构相关页面
+    url(r'^org/', include(('MxOnline.apps.organizations.urls', "organizations"), namespace='org')),
 ]
