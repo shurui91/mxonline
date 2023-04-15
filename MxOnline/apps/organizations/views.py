@@ -6,6 +6,12 @@ from MxOnline.apps.organizations.models import CourseOrg, City
 from MxOnline.apps.organizations.forms import AddAskForm
 
 
+
+class OrgHomeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "org-detail-homepage.html")
+
+
 class AddAskView(View):
     # 处理用户的咨询
     def post(self, request, *args, **kwargs):
