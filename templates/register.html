@@ -14,7 +14,7 @@
 <body>
 <div class="loginbox dialogbox">
     <h1>账号登录</h1>
-    <div class="close jsCloseDialog"><img src="../images/dig_close.png"></div>
+    <div class="close jsCloseDialog"><img src="{% static 'images/dig_close.png' %}"></div>
     <div class="cont">
         <form id="jsLoginForm" autocomplete="off">
 
@@ -42,7 +42,7 @@
     <!--提示弹出框-->
     <div class="successbox dialogbox" id="jsSuccessTips">
         <h1>成功提交</h1>
-        <div class="close jsCloseDialog"><img src="../images/dig_close.png"></div>
+        <div class="close jsCloseDialog"><img src="{% static 'images/dig_close.png' %}"></div>
         <div class="cont">
             <h2>您的需求提交成功！</h2>
             <p></p>
@@ -90,8 +90,8 @@
                             <input id="jsRegMobile" name="mobile" type="text" placeholder="请输入您的手机号码">
                         </div>
                         <div class="form-group marb20 blur" id="jsRefreshCode">
-                            <img src="/captcha/image/5b0fe7811ef645d9cb94cc7af579e855ec49819a/" alt="captcha" class="captcha" />
-<input type="hidden" name="captcha_0" value="5b0fe7811ef645d9cb94cc7af579e855ec49819a" required id="id_captcha_0"><input type="text" name="captcha_1" required id="id_captcha_1" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false">
+                            <img src="{% static '/captcha/image/5b0fe7811ef645d9cb94cc7af579e855ec49819a/' %}" alt="captcha" class="captcha" />
+                            <input type="hidden" name="captcha_0" value="5b0fe7811ef645d9cb94cc7af579e855ec49819a" required id="id_captcha_0"><input type="text" name="captcha_1" required id="id_captcha_1" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false">
                         </div>
                         <div class="clearfix">
                             <div class="form-group marb8 verify-code ">
