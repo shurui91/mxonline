@@ -6,6 +6,34 @@ from MxOnline.apps.organizations.models import CourseOrg, City
 from MxOnline.apps.organizations.forms import AddAskForm
 
 
+class OrgDescView(View):
+    def get(self, request, org_id, *args, **kwargs):
+        current_page = "desc"
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        course_org.click_nums += 1
+        course_org.save()
+
+        return render(request, "org-detail-desc.html", {
+            "course_org": course_org,
+            "current_page": current_page,
+        })
+
+
+class OrgCourseView(View):
+    def get(self, request, org_id, *args, **kwargs):
+        current_page = "course"
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        course_org.click_nums += 1
+        course_org.save()
+
+        all_courses = course_org.course_set.all()
+        return render(request, "org-detail-course.html", {
+            "all_courses": all_courses,
+            "course_org": course_org,
+            "current_page": current_page,
+        })
+
+
 class OrgTeacherView(View):
     def get(self, request, org_id, *args, **kwargs):
         current_page = "teacher"
