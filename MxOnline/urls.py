@@ -33,7 +33,7 @@ urlpatterns = [
     # 配置上传文件的访问url，没有这一行代码，media文件无法正常显示
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
     # url(r'^static/(?P<path>.*)$', serve, {"document_root":STATIC_ROOT}),
-    # url(r'^org_list/', OrgView.as_view(), name="org_list"),
+    url(r'^org_list/', OrgView.as_view(), name="org_list"),
 
     # 机构相关页面
     url(r'^org/', include(('MxOnline.apps.organizations.urls', "organizations"), namespace='org')),

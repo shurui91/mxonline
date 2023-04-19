@@ -8,8 +8,18 @@ from MxOnline.apps.organizations.forms import AddAskForm
 
 
 class OrgHomeView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, "org-detail-homepage.html")
+    def get(self, request, org_id, *args, **kwargs):
+        course_org = CourseOrg.objects.get(id=int(org_id))
+        course_org.click_nums += 1
+        course_org.save()
+
+        all_courses = course_org.course_set.all()[:3]
+        all_teacher = course_org.teacher_set.all()[:1]
+        return render(request, "org-detail-homepage.html", {
+            "all_courses": all_courses,
+            "all_teacher": all_teacher,
+            "course_org": course_org,
+        })
 
 
 class AddAskView(View):
@@ -36,7 +46,7 @@ class OrgView(View):
         hot_orgs = all_orgs.order_by("-click_nums")[:3]
 
         # 通过机构类别对课程机构进行筛选
-        # 这里默认值为空
+        # 如果找不到ct, 则返回空字符串
         category = request.GET.get("ct", "")
         if category:
             all_orgs = all_orgs.filter(category=category)
