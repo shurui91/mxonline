@@ -59,7 +59,7 @@
                                 </li>
                             </ul>
                         </div>
-                        {% for org in all_orgs.object_list %}
+                        {% for org in all_orgs %}
                             <dl class="des difdes">
                                 <dt>
                                     <a href="{% url 'org:home' org.id %}">
