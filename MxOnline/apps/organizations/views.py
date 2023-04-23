@@ -4,6 +4,7 @@ from django.http import JsonResponse
 
 from MxOnline.apps.organizations.models import CourseOrg, City
 from MxOnline.apps.organizations.forms import AddAskForm
+from MxOnline.apps.operations.models import UserFavorite
 
 
 class OrgDescView(View):
@@ -13,9 +14,15 @@ class OrgDescView(View):
         course_org.click_nums += 1
         course_org.save()
 
+        has_fav = False
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_id=course_org.id, fav_type=2):
+                has_fav = True
+
         return render(request, "org-detail-desc.html", {
             "course_org": course_org,
             "current_page": current_page,
+            "has_fav": has_fav,
         })
 
 
@@ -41,11 +48,17 @@ class OrgTeacherView(View):
         course_org.click_nums += 1
         course_org.save()
 
+        has_fav = False
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_id=course_org.id, fav_type=2):
+                has_fav = True
+
         all_teacher = course_org.teacher_set.all()
         return render(request, "org-detail-teachers.html", {
             "all_teacher": all_teacher,
             "course_org": course_org,
             "current_page": current_page,
+            "has_fav": has_fav,
         })
 
 
@@ -56,6 +69,11 @@ class OrgHomeView(View):
         course_org.click_nums += 1
         course_org.save()
 
+        has_fav = False
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_id=course_org.id, fav_type=2):
+                has_fav = True
+
         all_courses = course_org.course_set.all()[:3]
         all_teacher = course_org.teacher_set.all()[:1]
         return render(request, "org-detail-homepage.html", {
@@ -63,6 +81,7 @@ class OrgHomeView(View):
             "all_teacher": all_teacher,
             "course_org": course_org,
             "current_page": current_page,
+            "has_fav": has_fav,
         })
 
 

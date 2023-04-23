@@ -37,4 +37,7 @@ urlpatterns = [
 
     # 机构相关页面
     url(r'^org/', include(('MxOnline.apps.organizations.urls', "organizations"), namespace='org')),
+
+    # 用户相关操作
+    url(r'^op/', include(('MxOnline.apps.operations.urls', "operations"), namespace='op')),
 ]

@@ -1,12 +1,10 @@
 {% extends "org-base.html" %}
-
 {% block title %}机构首页{% endblock %}
-
 {% block right_form %}
     <div class="right companycenter layout grouping">
         <div class="head">
             <h1>全部课程</h1>
-            <a class="green fr more" href="org-detail-course.html">查看更多 > </a>
+            <a class="green fr more" href="{% url 'org:course' course_org.id %}">查看更多 > </a>
         </div>
         <div class="brief group_list">
             {% for course in all_courses %}
@@ -28,8 +26,11 @@
             {% endfor %}
         </div>
     </div>
-
     <div class="right companycenter layout">
+        <div class="head">
+            <h1>机构教师</h1>
+            <a class="green fr more" href="{% url 'org:teacher' course_org.id %}">查看更多 > </a>
+        </div>
         <div class="diarys">
             {% for teacher in all_teacher %}
                 <div class="module5 share company-diary-box" style="padding:10px 0;">
@@ -49,13 +50,14 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="right companycenter layout">
-            <div class="head">
-                <h1>机构介绍</h1>
-                <a class="green fr more" href="org-dtail-desc.html">查看更多 > </a>
-            </div>
-            <div class="cont">
-                {{ course_org.desc }}
-            </div>
+    </div>
+    <div class="right companycenter layout">
+        <div class="head">
+            <h1>机构介绍</h1>
+            <a class="green fr more" href="{% url 'org:desc' course_org.id %}">查看更多 > </a>
         </div>
+        <div class="cont">
+            {% autoescape off %}   {{ course_org.desc }} {% endautoescape %}
+        </div>
+    </div>
 {% endblock %}
