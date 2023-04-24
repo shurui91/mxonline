@@ -28,7 +28,7 @@ class CourseResourceAdmin(admin.ModelAdmin):
     list_filter = ["course", "name", "download", "add_time"]
 
 
-class CourseTagAdmin(object):
+class CourseTagAdmin(admin.ModelAdmin):
     list_display = ["course", "tag", "add_time"]
     search_fields = ["course", "tag"]
     list_filter = ["course", "tag", "add_time"]
@@ -42,3 +42,4 @@ admin.site.register(Course, CourseAdmin)
 admin.site.register(Lesson, LessonAdmin)
 admin.site.register(Video, VideoAdmin)
 admin.site.register(CourseResource, CourseResourceAdmin)
+admin.site.register(CourseTag, CourseTagAdmin)
