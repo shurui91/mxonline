@@ -14,7 +14,8 @@ from MxOnline.apps.organizations.models import Teacher, CourseOrg
 
 class Course(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="Teacher")
-    course_org = models.ForeignKey(CourseOrg, null=True, blank=True, on_delete=models.CASCADE, verbose_name="Course Organization")
+    course_org = models.ForeignKey(CourseOrg, null=True, blank=True, on_delete=models.CASCADE,
+                                   verbose_name="Course Organization")
     name = models.CharField(verbose_name="Course Name", max_length=50)
     desc = models.CharField(verbose_name="Course Description", max_length=300)
     learn_times = models.IntegerField(default=0, verbose_name="Learn Times (mins)")
@@ -38,8 +39,25 @@ class Course(models.Model):
         verbose_name = "课程信息"
         verbose_name_plural = verbose_name
 
+    # 返回当前课程的章节数
+    def lesson_nums(self):
+        return self.lesson_set.all().count()
+
     def __str__(self):
         return self.name
+
+
+class CourseTag(BaseModel):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE,
+                               verbose_name="Course")
+    tag = models.CharField(max_length=100, verbose_name="Tag Name")
+
+    class Meta:
+        verbose_name = "课程标签"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.tag
 
 
 class Lesson(BaseModel):

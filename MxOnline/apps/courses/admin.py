@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from MxOnline.apps.courses.models import Course, Lesson, Video, CourseResource
+from MxOnline.apps.courses.models import Course, Lesson, Video, CourseResource, CourseTag
 
 
 class CourseAdmin(admin.ModelAdmin):
@@ -26,6 +26,12 @@ class CourseResourceAdmin(admin.ModelAdmin):
     list_display = ["course", "name", "download", "add_time"]
     search_fields = ["course", "name", "download"]
     list_filter = ["course", "name", "download", "add_time"]
+
+
+class CourseTagAdmin(object):
+    list_display = ["course", "tag", "add_time"]
+    search_fields = ["course", "tag"]
+    list_filter = ["course", "tag", "add_time"]
 
 
 admin.site.site_header = '幕课网管理后台'  # sidebar title
