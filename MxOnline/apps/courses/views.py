@@ -72,10 +72,10 @@ class CourseLessonView(LoginRequiredMixin, View):
             if item.course.id != course.id:
                 related_courses.append(item.course)
 
-        course_resource = CourseResource.objects.filter(course=course)
+        course_resources = CourseResource.objects.filter(course=course)
         return render(request, "course-video.html", {
             "course": course,
-            "course_resource": course_resource,
+            "course_resources": course_resources,
             "related_courses": related_courses,
         })
 

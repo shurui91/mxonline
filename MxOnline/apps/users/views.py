@@ -1,10 +1,39 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic.base import View
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 
-from MxOnline.apps.users.forms import LoginForm, DynamicLoginForm
+from MxOnline.apps.users.forms import LoginForm, DynamicLoginForm, UploadImageForm
+
+
+class UploadImageView(LoginRequiredMixin, View):
+    login_url = "/login/"
+
+    # def save_file(self, file):
+    #     with open("C:/Users/Administrator/PycharmProjects/MxOnline/media/head_image/uploaded.jpg", "wb") as f:
+    #         for chunk in file.chunks():
+    #             f.write(chunk)
+
+    def post(self, request, *args, **kwargs):
+        # 处理用户上传的头像
+        image_form = UploadImageForm(request.POST, request.FILES, instance=request.user)
+        if image_form.is_valid():
+            image_form.save()
+            return JsonResponse({
+                "status": "success"
+            })
+        else:
+            return JsonResponse({
+                "status": "fail"
+            })
+        # files = request.FILES["image"]
+        # self.save_file(files)
+
+        # 1. 如果同一个文件上传多次，相同名称的文件应该如何处理
+        # 2. 文件的保存路径应该写入到user
+        # 3. 还没有做表单验证
 
 
 class LogoutView(View):
