@@ -66,7 +66,8 @@
                         </div>
                         {% if course.notice %}
                             <div id="notice" class="clearfix">
-                                <div class="l"><strong>课程公告:</strong> <a href="javascript:void(0)">{{ course.notice }}</a>
+                                <div class="l"><strong>课程公告:</strong> <a
+                                        href="javascript:void(0)">{{ course.notice }}</a>
                                 </div>
                             </div>
                         {% endif %}
@@ -97,11 +98,14 @@
                             <div class="box mb40">
                                 <h4>资料下载</h4>
                                 <ul class="downlist">
-                                    <li>
-                                        <span><i class="aui-iconfont aui-icon-file"></i>&nbsp;&nbsp;前端页面</span>
-                                        <a href="../media/course/resource/2016/11/media.zip" class="downcode"
-                                           target="_blank" download="" data-id="274" title="">下载</a>
-                                    </li>
+                                    {% for resource in course_resource %}
+                                        <li>
+                                            <span><i
+                                                    class="aui-iconfont aui-icon-file"></i>&nbsp;&nbsp;{{ resource.name }}</span>
+                                            <a href="{{ resource.download.name }}" class="downcode"
+                                               target="_blank" download="" data-id="274" title="">下载</a>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <div class="box mb40">
@@ -137,45 +141,15 @@
                                          style="display: block">
                                         <!-- img 200 x 112 -->
                                         <ul class="other-list">
-
-                                            <li class="curr">
-                                                <a href="course-detail.html" target="_blank">
-                                                    <img src="../media/courses/2016/11/540e57300001d6d906000338-240-135_n0L8vbw.jpg"
-                                                         alt="django与vuejs实战项目2">
-                                                    <span class="name autowrap">django与vuejs实战项目2</span>
-                                                </a>
-                                            </li>
-
-                                            <li class="curr">
-                                                <a href="course-detail.html" target="_blank">
-                                                    <img src="../media/courses/2016/12/python面向对象.jpg"
-                                                         alt="python面向对象">
-                                                    <span class="name autowrap">python面向对象</span>
-                                                </a>
-                                            </li>
-
-                                            <li class="curr">
-                                                <a href="course-detail.html" target="_blank">
-                                                    <img src="../media/courses/2016/12/python文件处理.jpg"
-                                                         alt="python文件处理">
-                                                    <span class="name autowrap">python文件处理</span>
-                                                </a>
-                                            </li>
-
-                                            <li class="curr">
-                                                <a href="course-detail.html" target="_blank">
-                                                    <img src="../media/courses/2016/11/mysql.jpg" alt="django入门">
-                                                    <span class="name autowrap">django入门</span>
-                                                </a>
-                                            </li>
-
-                                            <li class="curr">
-                                                <a href="course-detail.html" target="_blank">
-                                                    <img src="../media/courses/2016/12/mysql.jpg" alt="xadmin进阶开发">
-                                                    <span class="name autowrap">xadmin进阶开发</span>
-                                                </a>
-                                            </li>
-
+                                            {% for course in related_courses %}
+                                                <li class="curr">
+                                                    <a href="{% url 'course:detail' course.id %}" target="_blank">
+                                                        <img src="{{ course.image.url }}"
+                                                             alt="{{ course.name }}">
+                                                        <span class="name autowrap">{{ course.name }}</span>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                     <div class="cp-tab-pannel js-comp-tab-pannel" data-pannel="plan">

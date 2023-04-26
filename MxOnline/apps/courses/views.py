@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from MxOnline.apps.courses.models import Course, CourseTag
-from MxOnline.apps.operations.models import UserFavorite
+from MxOnline.apps.courses.models import Course, CourseTag, CourseResource
+from MxOnline.apps.operations.models import UserFavorite, UserCourse
 
 
 class CourseLessonView(LoginRequiredMixin, View):
@@ -15,8 +15,29 @@ class CourseLessonView(LoginRequiredMixin, View):
         course.click_nums += 1
         course.save()
 
+        # 查询用户是否已经关联了该课程
+        user_courses = UserCourse.objects.filter(user=request.user, course=course)
+        if not user_courses:
+            user_course = UserCourse(user=request.user, course=course)
+            user_course.save()
+            course.students += 1
+            course.save()
+
+        # 学习过该课程的所有同学
+        user_courses = UserCourse.objects.filter(course=course)
+        user_ids = [user_course.user.id for user_course in user_courses]
+        all_courses = UserCourse.objects.filter(user_id__in=user_ids).order_by("-course__click_nums")[:5]
+        # related_courses = [user_course.course for user_course in all_courses]
+        related_courses = []
+        for item in all_courses:
+            if item.course.id != course.id:
+                related_courses.append(item.course)
+
+        course_resource = CourseResource.objects.filter(course=course)
         return render(request, "course-video.html", {
             "course": course,
+            "course_resource": course_resource,
+            "related_courses": related_courses,
         })
 
 
