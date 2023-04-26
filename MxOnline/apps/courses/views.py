@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.views.generic.base import View
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from MxOnline.apps.courses.models import Course, CourseTag
 from MxOnline.apps.operations.models import UserFavorite
 
 
-class CourseLessonView(View):
+class CourseLessonView(LoginRequiredMixin, View):
+    login_url = "/login/"
+
     def get(self, request, course_id, *args, **kwargs):
         """获取课程章节信息"""
         course = Course.objects.get(id=int(course_id))
