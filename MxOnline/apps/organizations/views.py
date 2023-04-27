@@ -2,9 +2,37 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from django.http import JsonResponse
 
-from MxOnline.apps.organizations.models import CourseOrg, City
+from MxOnline.apps.organizations.models import CourseOrg, City, Teacher
 from MxOnline.apps.organizations.forms import AddAskForm
 from MxOnline.apps.operations.models import UserFavorite
+
+
+class TeacherListView(View):
+    def get(self, request, *args, **kwargs):
+        all_teachers = Teacher.objects.all()
+        teacher_nums = all_teachers.count()
+
+        # 排行榜
+        hot_teachers = Teacher.objects.all().order_by("-click_nums")[:3]
+
+        keywords = request.GET.get("keywords", "")
+        s_type = "teacher"
+        if keywords:
+            all_teachers = all_teachers.filter(Q(name__icontains=keywords))
+
+        # 对讲师进行排序
+        sort = request.GET.get("sort", "")
+        if sort == "hot":
+            all_teachers = all_teachers.order_by("-click_nums")
+
+        return render(request, "teachers-list.html", {
+            "teachers": all_teachers,
+            "teacher_nums": teacher_nums,
+            "sort": sort,
+            "hot_teachers": hot_teachers,
+            "keywords": keywords,
+            "s_type": s_type
+        })
 
 
 class OrgDescView(View):
