@@ -23,7 +23,7 @@ class UserProfile(AbstractUser):
     gender = models.CharField(verbose_name="Gender/性别", choices=GENDER_CHOICES, max_length=6)
     address = models.CharField(max_length=100, verbose_name="Address/地址", default="")
     mobile = models.CharField(max_length=11, verbose_name="Phone Number/电话")
-    image = models.ImageField(verbose_name="Avatar/头像", upload_to="head_image/%Y/%m", default="default.jpg")
+    image = models.ImageField(verbose_name="Avatar/头像", upload_to="head_image/%Y/%m", default="discord.png")
 
     class Meta:
         verbose_name = "用户信息"

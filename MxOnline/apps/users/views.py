@@ -8,6 +8,13 @@ from django.urls import reverse
 from MxOnline.apps.users.forms import LoginForm, DynamicLoginForm, UploadImageForm
 
 
+class UserInfoView(LoginRequiredMixin, View):
+    login_url = "/login/"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, "usercenter-info.html")
+
+
 class UploadImageView(LoginRequiredMixin, View):
     login_url = "/login/"
 

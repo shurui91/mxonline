@@ -38,9 +38,12 @@ urlpatterns = [
     # 机构相关页面
     url(r'^org/', include(('MxOnline.apps.organizations.urls', "organizations"), namespace='org')),
 
+    # 机构相关页面
+    url(r'^course/', include(('MxOnline.apps.courses.urls', "courses"), namespace='course')),
+
     # 用户相关操作
     url(r'^op/', include(('MxOnline.apps.operations.urls', "operations"), namespace='op')),
 
-    # 机构相关页面
-    url(r'^course/', include(('MxOnline.apps.courses.urls', "courses"), namespace='course')),
+    # 用户个人中心
+    url(r'^users/', include(('MxOnline.apps.users.urls', "users"), namespace='users')),
 ]
