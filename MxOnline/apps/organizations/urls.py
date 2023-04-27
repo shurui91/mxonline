@@ -1,6 +1,6 @@
 from django.urls import re_path as url
 from MxOnline.apps.organizations.views import OrgView, AddAskView, OrgHomeView, OrgTeacherView, OrgCourseView, \
-    OrgDescView, TeacherListView
+    OrgDescView, TeacherListView, TeacherDetailView
 
 urlpatterns = [
     url(r'^list/$', OrgView.as_view(), name="list"),
@@ -13,4 +13,5 @@ urlpatterns = [
 
     # 讲师列表页
     url(r'^teachers/$', TeacherListView.as_view(), name="teachers"),
+    url(r'^teachers/(?P<teacher_id>\d+)/$', TeacherDetailView.as_view(), name="teacher_detail"),
 ]

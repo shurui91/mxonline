@@ -6,7 +6,8 @@
         <div class="wp">
             <ul class="crumbs">
                 <li><a href="{% url 'index' %}">首页</a>></li>
-                <li>讲师</li>
+                <li><a href="{% url 'org:teachers' %}">授课讲师</a>></li>
+                <li>讲师详情</li>
             </ul>
         </div>
     </section>
@@ -28,7 +29,7 @@
                     {% for teacher in teachers %}
                         <dl class="des">
                             <dt>
-                                <a href="teacher-detail.html">
+                                <a href="{% url 'org:teacher_detail' teacher.id %}">
                                     <div class="picpic">
                                         <img width="100" height="100" class="scrollLoading"
                                              src="{{ teacher.image.url }}"/>
@@ -47,7 +48,7 @@
                                 </div>
                             </dt>
                             <dd>
-                                <a href="teacher-detail.html">
+                                <a href="{% url 'org:teacher_detail' teacher.id %}">
                                     <h1>{{ teacher.name }}<span class="key picbig">金牌讲师</span></h1>
                                 </a>
                                 <ul class="cont">
@@ -58,7 +59,7 @@
                                     <li>教学特点：<span>{{ teacher.points }}</span></li>
                                 </ul>
                             </dd>
-                            <a class="buy buyservice" href="teacher-detail.html"><br/>查看<br/>详情</a>
+                            <a class="buy buyservice" href="{% url 'org:teacher_detail' teacher.id %}"><br/>查看<br/>详情</a>
                         </dl>
                     {% endfor %}
                 </div>
@@ -76,14 +77,14 @@
                 {% for teacher in hot_teachers %}
                     <dl class="des">
                         <span class="num fl">1</span>
-                        <a href="/diary/hk_detail/6/">
+                        <a href="{% url 'org:teacher_detail' teacher.id %}">
                             <dt>
                                 <img width="50" height="50" class="scrollLoading"
                                      src="{{ teacher.image.url }}"/>
                             </dt>
                         </a>
                         <dd>
-                            <a href="/diary/hk_detail/6/">
+                            <a href="{% url 'org:teacher_detail' teacher.id %}">
                                 <h1 title="bobby">{{ teacher.name }}</h1>
                             </a>
                             <p>工作年限：<span>{% if teacher.work_years > 0 %}{{ teacher.work_years }}年{% else %}无{% endif %}</span>

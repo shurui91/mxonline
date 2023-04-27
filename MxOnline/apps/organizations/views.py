@@ -7,6 +7,27 @@ from MxOnline.apps.organizations.forms import AddAskForm
 from MxOnline.apps.operations.models import UserFavorite
 
 
+class TeacherDetailView(View):
+    def get(self, request, teacher_id, *args, **kwargs):
+        teacher = Teacher.objects.get(id=int(teacher_id))
+
+        teacher_fav = False
+        org_fav = False
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_type=3, fav_id=teacher.id):
+                teacher_fav = True
+            if UserFavorite.objects.filter(user=request.user, fav_type=2, fav_id=teacher.org.id):
+                org_fav = True
+
+        hot_teachers = Teacher.objects.all().order_by("-click_nums")[:3]
+        return render(request, "teacher-detail.html", {
+            "teacher": teacher,
+            "teacher_fav": teacher_fav,
+            "org_fav": org_fav,
+            "hot_teachers": hot_teachers
+        })
+
+
 class TeacherListView(View):
     def get(self, request, *args, **kwargs):
         all_teachers = Teacher.objects.all()
