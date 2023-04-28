@@ -3,8 +3,8 @@ A Django based project like Udemy
 
 # Tech Stack
 * Django 4.1
-* MySQL
 * SimpleUI
+* More details, please refer to `requirements.txt` file
 
 # Project Screenshots
 ## Homepage
