@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from MxOnline.apps.users.models import BaseModel
 from MxOnline.apps.courses.models import Course
 
+# 直接return the currently active User model
 UserProfile = get_user_model()
 
 
