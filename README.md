@@ -2,8 +2,8 @@
 A Django based project like Udemy
 
 # Tech Stack
-* Django 4.1
-* SimpleUI
+* Django 4
+* SimpleUI - to replace the default Django admin
 * More details, please refer to `requirements.txt` file
 
 # Project Screenshots
