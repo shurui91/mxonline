@@ -51,9 +51,9 @@ class Teacher(BaseModel):
     work_years = models.IntegerField(default=0, verbose_name="YOE")
     work_company = models.CharField(max_length=50, verbose_name="Employer")
     work_position = models.CharField(max_length=50, verbose_name="Position")
-    points = models.CharField(max_length=50, verbose_name="Characters")
-    click_nums = models.IntegerField(default=0, verbose_name="Clicks")
-    fav_nums = models.IntegerField(default=0, verbose_name="Favorites")
+    points = models.CharField(max_length=50, verbose_name="Characters/Description")
+    click_nums = models.IntegerField(default=0, verbose_name="Number of Visits")
+    fav_nums = models.IntegerField(default=0, verbose_name="Number of Favorites")
     age = models.IntegerField(default=18, verbose_name="Age")
     image = models.ImageField(upload_to="teacher/%Y/%m", verbose_name="Avatar", max_length=100)
 
