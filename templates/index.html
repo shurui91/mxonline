@@ -24,14 +24,14 @@
                     {% if user.is_authenticated %}
                         <div class="personal">
                             <dl class="user fr">
-                                <dd>bobby<img class="down fr" src="/static/images/top_down.png"/></dd>
-                                <dt><img width="20" height="20" src="/static/media/image/2016/12/default_big_14.png"/>
+                                <dd>bobby<img class="down fr" src={% static 'images/top_down.png' %}/></dd>
+                                <dt><img width="20" height="20" src="{% static 'images/2016/12/default_big_14.png' %}"/>
                                 </dt>
                             </dl>
                             <div class="userdetail">
                                 <dl>
                                     <dt><img width="80" height="80"
-                                             src="/static/media/image/2016/12/default_big_14.png"/></dt>
+                                             src="{% static 'images/2016/12/default_big_14.png' %}"/></dt>
                                     <dd>
                                         <h2>django</h2>
                                         <p>bobby</p>
@@ -52,7 +52,7 @@
 
             <div class="middle">
                 <div class="wp">
-                    <a href="index.html"><img class="fl" src="/static/images/logo.jpg"/></a>
+                    <a href="index.html"><img class="fl" src="{% static 'images/logo.jpg' %}"/></a>
                     <div class="searchbox fr">
                         <div class="selectContainer fl">
                             <span class="selectOption" id="jsSelectOption" data-value="course">
@@ -65,7 +65,7 @@
                             </ul>
                         </div>
                         <input id="search_keywords" class="fl" type="text" value="" placeholder="请输入搜索内容"/>
-                        <img class="search_btn fr" id="jsSearchBtn" src="/static/images/search_btn.png"/>
+                        <img class="search_btn fr" id="jsSearchBtn" src="{% static 'images/search_btn.png' %}"/>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                             <li class="active"><a href="index.html">首页</a></li>
                             <li>
                                 <a href="{% url 'course:list' %}">
-                                    公开课<img class="hot" src="/static/images/nav_hot.png">
+                                    公开课<img class="hot" src="{% static 'images/nav_hot.png' %}">
                                 </a>
                             </li>
                             <li>
@@ -105,35 +105,35 @@
                     <li>
                         <a href="http://www.imooc.com">
                             <img width="1200" height="478"
-                                 src="/static/media/banner/2016/11/57a801860001c34b12000460.jpg"/>
+                                 src="{% static 'media/banner/2016/11/57a801860001c34b12000460.jpg' %}"/>
                         </a>
                     </li>
 
                     <li>
                         <a href="http://www.projectsedu.com">
                             <img width="1200" height="478"
-                                 src="/static/media/banner/2016/11/57aa86a0000145c512000460.jpg"/>
+                                 src="{% static 'media/banner/2016/11/57aa86a0000145c512000460.jpg' %}"/>
                         </a>
                     </li>
 
                     <li>
                         <a href="http://www.projectsedu.com">
                             <img width="1200" height="478"
-                                 src="/static/media/banner/2016/11/57a801860001c34b12000460_z4Vb8zl.jpg"/>
+                                 src="{% static 'media/banner/2016/11/57a801860001c34b12000460_z4Vb8zl.jpg' %}"/>
                         </a>
                     </li>
 
                     <li>
                         <a href="http://www.projectsedu.com">
                             <img width="1200" height="478"
-                                 src="/static/media/banner/2016/11/57aa86a0000145c512000460_nMwvoQD.jpg"/>
+                                 src="{% static 'media/banner/2016/11/57aa86a0000145c512000460_nMwvoQD.jpg' %}"/>
                         </a>
                     </li>
 
                     <li>
                         <a href="http://www.projectsedu.com">
                             <img width="1200" height="478"
-                                 src="/static/media/banner/2016/11/57aa86a0000145c512000460_GXIBATC.jpg"/>
+                                 src="{% static 'media/banner/2016/11/57aa86a0000145c512000460_GXIBATC.jpg' %}"/>
                         </a>
                     </li>
 
@@ -154,19 +154,19 @@
     <div class="wp">
         <ul class="feature">
             <li class="feature1">
-                <img class="pic" src="/static/images/feature1.png"/>
+                <img class="pic" src="{% static 'images/feature1.png' %}"/>
                 <p class="center">专业权威</p>
             </li>
             <li class="feature2">
-                <img class="pic" src="/static/images/feature2.png"/>
+                <img class="pic" src="{% static 'images/feature2.png' %}"/>
                 <p class="center">课程最新</p>
             </li>
             <li class="feature3">
-                <img class="pic" src="/static/images/feature3.png"/>
+                <img class="pic" src="{% static 'images/feature3.png' %}"/>
                 <p class="center">名师授课</p>
             </li>
             <li class="feature4">
-                <img class="pic" src="/static/images/feature4.png"/>
+                <img class="pic" src="{% static 'images/feature4.png' %}"/>
                 <p class="center">数据真实</p>
             </li>
         </ul>
@@ -555,10 +555,10 @@
     <div class="footer">
         <div class="wp">
             <ul class="cont">
-                <li class="logo"><a href=""><img src="/static/images/footlogo.png"/></a></li>
-                <li class="code"><img src="/static/images/code.jpg"/>
+                <li class="logo"><a href=""><img src="{% static 'images/footlogo.png' %}"/></a></li>
+                <li class="code"><img src="{% static 'images/code.jpg' %}"/>
                     <p class="center">扫描关注微信</p></li>
-                <li class="third"><img class="fl" src="/static/images/tell.png"/>
+                <li class="third"><img class="fl" src="{% static 'images/tell.png' %}"/>
                     <p class="tell">33333333</p>
                     <p class="time">周一至周日 9:00-18:00</p></li>
             </ul>
@@ -566,8 +566,8 @@
         </div>
         <p class="line"></p>
         <div class="wp clear">
-            <span class="fl">? 2023 www.projectsedu.com 慕学在线-在线学习交流平台 保留所有权利</span>
-            <span class="fr">copyright ? 2023 ICP备案证书号：蜀ICP备xxxxx号-1</span>
+            <span class="fl">{% now "Y" %} www.projectsedu.com 慕学在线-在线学习交流平台 保留所有权利</span>
+            <span class="fr">copyright {% now "Y" %} ICP备案证书号：蜀ICP备xxxxx号-1</span>
         </div>
     </div>
 </footer>
