@@ -52,6 +52,7 @@ class LogoutView(View):
 class LoginView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
+            # 如果登陆成功，去主页
             return HttpResponseRedirect(reverse("index"))
 
         login_form = DynamicLoginForm()
@@ -75,6 +76,8 @@ class LoginView(View):
             # 登录成功之后redirect到登录前的页面
             if user is not None:
                 login(request, user)
+                # 在登陆成功后，虽然账号密码对，但是网页url不变，所以不能直接用render
+                # return render(request, "index.html")
                 next = request.GET.get("next", "")
                 if next:
                     return HttpResponseRedirect(next)
